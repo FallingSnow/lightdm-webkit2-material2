@@ -45,7 +45,7 @@ class App extends React.PureComponent {
 
         return (
             <IntlProvider locale={languageCode.substring(0, 2)} messages={messages}>
-                <div id="app" style={containerStyle} className={'scaling-' + this.props.settings.scaling * 100}>
+                <div id="app" style={containerStyle} className={'scaling-' + this.props.settings.scaling * 100 + ' locale-'+languageCode.substring(0, 2)}>
                     <Background {...this.props}/>
                     <ReactCSSTransitionGroup id="transition-container" transitionName={{
                         enter: this.props.settings.animation

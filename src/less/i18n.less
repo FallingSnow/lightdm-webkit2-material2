@@ -1,0 +1,29 @@
+.locale {
+    &-ar,
+    &-fa,
+    &-ur {
+        direction: rtl;
+
+        button {
+            margin: 0 0 0 8px !important;
+            direction: rtl;
+
+            .fa {
+                margin-right: 12px !important;
+                margin-left: 0 !important;
+            }
+        }
+
+        .form-container {
+            > div {
+                label {
+                    transform-origin: right top 0 !important;
+                }
+            }
+        }
+
+        #footer {
+            direction: ltr;
+        }
+    }
+}
