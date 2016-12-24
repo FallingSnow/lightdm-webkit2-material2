@@ -2,16 +2,16 @@
 
 This is a theme for LightDM Webkit2 (`lightdm-webkit2-greeter`).
 
-Arch Linux users can find it in the AUR: [`lightdm-webkit2-theme-material`](https://aur.archlinux.org/packages/lightdm-webkit-theme-material-git/).
+Arch Linux users can find it in the AUR: [`lightdm-webkit2-theme-material2`](https://aur.archlinux.org/packages/lightdm-webkit2-theme-material2/).
 
 ### Screenshots
 
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/default.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/shutdown.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/settings.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/zodiac.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/image.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit-material/master/screenshots/image-random.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/default.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/shutdown.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/settings.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/zodiac.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image-random.png)
 
 ### Features
 
@@ -30,7 +30,7 @@ I created this for use on Arch Linux, so it only has the basic features of:
 
 ### How to install
 
-[Check our wiki](https://github.com/FallingSnow/lightdm-webkit-material/wiki/Installation)
+[Check our wiki](https://github.com/FallingSnow/lightdm-webkit2-material2/wiki/Installation)
 
 ### Setting your own user picture
 
