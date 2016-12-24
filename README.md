@@ -4,14 +4,6 @@ This is a theme for LightDM Webkit2 (`lightdm-webkit2-greeter`).
 
 Arch Linux users can find it in the AUR: [`lightdm-webkit2-theme-material2`](https://aur.archlinux.org/packages/lightdm-webkit2-theme-material2/).
 
-### Screenshots
-
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/default.jpeg)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/shutdown.jpeg)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/settings.jpeg)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/zodiac.jpeg)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.jpeg)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/arabic.jpeg)
 ![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image-random.jpeg)
 
 Created for Arch Linux.
@@ -40,6 +32,15 @@ Created for Arch Linux.
 ### Tips
 #### Lock screen
 - Type `dm-tool lock`
+
+### Screenshots
+
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/default.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/shutdown.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/settings.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/zodiac.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/arabic.jpeg)
 
 ### License
 This work is free. You can redistribute it and/or modify it under the terms of the WTFPL (Do What The Fuck You Want To Public License), Version 2, as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.<br>
