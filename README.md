@@ -13,9 +13,9 @@ Arch Linux users can find it in the AUR: [`lightdm-webkit2-theme-material2`](htt
 ![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.png)
 ![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image-random.png)
 
-### Features
+Created for Arch Linux.
 
-I created this for use on Arch Linux, so it only has the basic features of:
+### Features
 
 - Selecting an available user from a dropdown
 - Entering their password
