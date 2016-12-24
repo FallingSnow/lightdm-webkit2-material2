@@ -1,0 +1,70 @@
+#background-clock {
+    position: fixed;
+    right: 0;
+    top: 0;
+    text-align: right;
+    color: fade(white, 70%);
+    padding: 0.3rem * @scale 1rem * @scale;
+
+    &:hover {
+        color: fade(white, 100%);
+    }
+
+    .town {
+        font-size: 1.1rem * @scale;
+        margin: 0.3rem * @scale 0;
+    }
+
+    .timezone {
+        font-size: 0.6rem * @scale;
+        margin: 0.3rem * @scale 0;
+        font-weight: lighter;
+    }
+
+    .time {
+        padding: 0;
+        margin: 0;
+        font-size: 2.6rem * @scale;
+        font-weight: bold;
+        list-style: none;
+        overflow: auto;
+        float: right;
+
+        .sectional {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .seconds {
+            font-size: 1.6rem * @scale;
+            padding-left: 0.2rem * @scale;
+            vertical-align: super;
+            float: right;
+        }
+
+        .points {
+            display: none;
+        }
+
+        .hours {
+            padding-right: 0.5rem * @scale;
+        }
+
+        .meridiem {
+            font-size: 0.2em * @scale;
+            padding-right: 4px * @scale;
+            float: right;
+            clear: right;
+        }
+
+        li {
+            float: left;
+        }
+    }
+
+    .date {
+        margin: 0;
+        font-size: 0.8rem * @scale;
+        position: relative;
+    }
+}

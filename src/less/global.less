@@ -1,0 +1,69 @@
+body {
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+}
+
+.scrollbox {
+    overflow: auto;
+    background: linear-gradient(white 30%, hsla(0,0%,100%, 0)), linear-gradient(hsla(0,0%,100%,0) 10px, white 70%) bottom, radial-gradient(at top, rgba(0,0,0,0.2), transparent 70%), radial-gradient(at bottom, rgba(0,0,0,0.2), transparent 70%) bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
+    background-attachment: local, local, scroll, scroll;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+    /* Opera doesn't support this in the shorthand */
+    background-attachment: local, local, scroll, scroll;
+}
+
+#wrapper {
+    transition: opacity 1.0s ease-out;
+
+    &.fade-out {
+        opacity: 0;
+    }
+}
+
+#transition-container {
+    z-index: 1;
+}
+
+.card {
+    max-height: 90vh;
+}
+
+.header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 10px 20px;
+}
+
+#avatarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.form-container {
+    max-height: ~"calc(100vh - 300px)";
+    overflow: auto;
+
+    > div {
+        label:not([for]) {
+            transform-origin: left bottom 0;
+            transform: scale(0.75);
+            display: inline-block;
+            color: rgba(0, 0, 0, 0.298039);
+        }
+    }
+    /* .scrollbox; */
+}
+
+.avatar {
+    width: 30%;
+    border-radius: 100%;
+}

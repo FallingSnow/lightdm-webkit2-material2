@@ -1,0 +1,85 @@
+[class^="scaling-"] {
+    * {
+        transition: all 0.4s;
+    }
+}
+
+.loop(@initialScale, @endScale) when (@initialScale =< @endScale) {
+    @scale: @initialScale / 100;
+    .loop((@initialScale + 25), @endScale);
+    // next iteration
+    .scaling-@{initialScale} {
+        font-size: 14px * @scale;
+
+        .card {
+            width: 300px * @scale !important;
+        }
+
+        label {
+            font-size: 16px * @scale !important;
+        }
+
+        .header {
+            font-size: 14px * @scale !important;
+        }
+
+        button {
+            @height: 32px * @scale;
+            @fontSize: 14px * @scale;
+            height: @height !important;
+            line-height: @height !important;
+            font-size: @fontSize !important;
+
+            span {
+                font-size: @fontSize !important;
+            }
+
+            .fa {
+                font-size: @fontSize !important;
+            }
+        }
+
+        #footer {
+            button {
+                @height: 36px * @scale;
+                height: @height !important;
+                line-height: @height !important;
+            }
+            .icon div {
+                line-height: 0 !important;
+            }
+        }
+
+        .form-container {
+            padding: 10px * @scale;
+            > div {
+                height: 72px * @scale !important;
+                font-size: 16px * @scale !important;
+
+                label:not([for]) {
+                    font-size: 16px * @scale !important;
+                }
+
+                > div > div {
+                    > div:nth-child(2) {
+                        top: 6px * @scale !important;
+                        line-height: 56px * @scale !important;
+                    }
+                }
+
+                svg {
+                    height: 24px * @scale !important;
+                    width: 24px * @scale !important;
+                    top: 22px * @scale !important;
+                }
+            }
+        }
+
+        .user-suffix {
+            color: #aaa;
+            font-size: 10px * @scale;
+        }
+        @import "background.less";
+    }
+}
+.loop(50, 250);
