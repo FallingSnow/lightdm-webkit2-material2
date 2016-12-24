@@ -6,12 +6,13 @@ Arch Linux users can find it in the AUR: [`lightdm-webkit2-theme-material2`](htt
 
 ### Screenshots
 
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/default.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/shutdown.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/settings.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/zodiac.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.png)
-![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image-random.png)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/default.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/shutdown.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/settings.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/zodiac.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/arabic.jpeg)
+![](https://cdn.rawgit.com/FallingSnow/lightdm-webkit2-material2/master/screenshots/image-random.jpeg)
 
 Created for Arch Linux.
 
@@ -34,15 +35,7 @@ Created for Arch Linux.
 
 ### Setting your own user picture
 
-- Add `Icon=/var/lib/AccountsService/icons/<youraccountname>` to the bottom of `/var/lib/AccountsService/users/<youraccountname>` and place a profile image at `/var/lib/AccountsService/icons/<youraccountname>`
-
-### Setting a custom background image
-
-- Put a `jpg` at `/var/lib/AccountsService/wallpapers/lightdm-webkit.jpg` (*You may need to create the wallpapers directory*) and set background engine to image in the settings
-
-### Setting multiple custom background images to pick from
-
-- Put a `jpg` or a `png` in `/var/lib/AccountsService/wallpapers` or in a directory specified by the `background_images` variable in your `/etc/lightdm/lightdm-webkit2-greeter.conf` (either the `greeter` or the `branding` section) and set the background engine to random image in the settings.
+[Check our wiki](https://github.com/FallingSnow/lightdm-webkit2-material2/wiki/Images)
 
 ### Tips
 #### Lock screen
