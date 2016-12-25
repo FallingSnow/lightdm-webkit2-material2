@@ -1,4 +1,4 @@
 node_modules/
 build/
 tools/settings.json
-lightm-webkit2-material2.tar.gz
+lightm-webkit2-material2*.tar.gz

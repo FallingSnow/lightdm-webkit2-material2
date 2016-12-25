@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "build": "rm -r build/* && cross-env NODE_ENV=production webpack -p --progress",
-    "prepublish": "npm run build && tar -cvzf lightdm-webkit2-material2.tar.gz build/*",
-    "translate": "node tools/translate"
+    "build": "rm -r build/*; cross-env NODE_ENV=production webpack -p --progress",
+    "prepublish": "npm run build && tar -C build -cvzf lightdm-webkit2-material2-0.0.1-2.tar.gz .",
+    "translate": "node tools/translate.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
     "material-ui": "^0.16.5",
     "moment": "^2.17.1",
     "moment-timezone": "^0.5.10",
-    "preact": "^7.1.0",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-clockwall": "github:fallingsnow/react-clockwall",
@@ -60,7 +59,6 @@
     "babel-register": "^6.18.0",
     "babel-runtime": "^6.20.0",
     "cross-env": "^3.1.3",
-    "denque": "^1.1.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
     "file-loader": "^0.9.0",
@@ -72,7 +70,6 @@
     "less-loader": "^2.2.3",
     "mstranslator": "^2.1.0",
     "raw-loader": "^0.5.1",
-    "rc-animate": "^2.3.1",
     "rc-slider": "github:fallingsnow/slider",
     "react-css-transition-replace": "^2.1.0",
     "react-intl": "^2.2.0",

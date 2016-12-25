@@ -16,6 +16,11 @@ if(!("lightdm" in window)) {
     window.lightdm.languages.push({code: 'ar-SR', name: 'Arabic', territory: null});
     window.lightdm.languages.push({code: 'ja-JP', name: 'Japanese', territory: null});
     window.lightdm.languages.push({code: 'zh-HK', name: 'Chinese', territory: null});
+    for (let user of lightdm.users) {
+        user.username = user.name;
+    }
+    console.log(lightdm.users)
+    lightdm.can_shutdown = lightdm.can_restart = lightdm.can_suspend = lightdm.can_hibernate = true;
 
     if(!("config" in window)) {
         window.config = {

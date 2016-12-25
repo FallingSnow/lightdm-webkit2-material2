@@ -19,6 +19,7 @@ import Divider from 'material-ui/Divider';
 import Slider from 'material-ui/Slider';
 import moment from 'moment';
 import {FormattedMessage} from 'react-intl';
+import debounce from 'lodash.debounce';
 
 let languages = [],
     backgroundEngineMenuItems = [],
@@ -65,7 +66,11 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
                     constructor(props) {
                         super(props);
                         console.debug('Settings loaded.', this.props);
+                        console.log(this.props.settings)
                     }
+                    state = {
+                        settings: this.props.settings
+                    };
                     goTo(destinaton) {
                         let _self = this;
                         return function() {
@@ -99,8 +104,15 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
                             case 'image':
                                 {
                                     backgroundEngineOptions.push(
-                                        <TextField fullWidth={true} floatingLabelText={< i className = "fa fa-image" > <FormattedMessage id="imageLocation" defaultMessage="Image Location"/> < /i>} key="backgroundImageLocation" value={this.props.settings.backgroundImageLocation} onChange={(e, index, val) => {
-                                            this.props.changeSetting('backgroundImageLocation', index, val)
+                                        <TextField fullWidth={true} floatingLabelText={< i className = "fa fa-image" > <FormattedMessage id="imageLocation" defaultMessage="Image Location"/> < /i>} key="backgroundImageLocation" value={this.state.settings.backgroundImageLocation} onChange={(e, index, val) => {
+                                            if (typeof val === 'undefined')
+                                                val = index;
+                                            this.setState({
+                                                settings: {
+                                                    backgroundImageLocation: val
+                                                }
+                                            });
+                                            this.props.changeSettingDebounce('backgroundImageLocation', index, val)
                                         }}/>
                                     );
                                     break;
@@ -108,8 +120,15 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
                             case 'random-image':
                                 {
                                     backgroundEngineOptions.push(
-                                        <TextField fullWidth={true} floatingLabelText={< i className = "fa fa-file-image-o" > <FormattedMessage id="imageDirectory" defaultMessage="Images Directory"/> < /i>} key="backgroundImagesDirectory" value={this.props.settings.backgroundImagesDirectory} onChange={(e, index, val) => {
-                                            this.props.changeSetting('backgroundImagesDirectory', index, val)
+                                        <TextField fullWidth={true} floatingLabelText={< i className = "fa fa-file-image-o" > <FormattedMessage id="imageDirectory" defaultMessage="Images Directory"/> < /i>} key="backgroundImagesDirectory" value={this.state.settings.backgroundImagesDirectory} onChange={(e, index, val) => {
+                                            if (typeof val === 'undefined')
+                                                val = index;
+                                            this.setState({
+                                                settings: {
+                                                    backgroundImagesDirectory: val
+                                                }
+                                            });
+                                            this.props.changeSettingDebounce('backgroundImagesDirectory', index, val)
                                         }}/>
                                     );
                                     break;
@@ -175,7 +194,8 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
 
                 function mapDispatchToProps(dispatch) {
                     return {
-                        changeSetting: bindActionCreators(changeSetting, dispatch)
+                        changeSetting: bindActionCreators(changeSetting, dispatch),
+                        changeSettingDebounce: debounce(bindActionCreators(changeSetting, dispatch), 1000)
                     };
                 }
                 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
