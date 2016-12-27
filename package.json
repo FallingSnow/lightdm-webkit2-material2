@@ -11,7 +11,7 @@
     "clean": "rm -rf build/*",
     "package": "npm run build && tar -C build -cvzf lightdm-webkit2-material2-0.0.1-2.tar.gz .",
     "translate": "node tools/translate.js",
-    "preinstall": "git submodule update --recursive"
+    "preinstall": "git submodule update --init --recursive"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "color-scheme": "0.0.5",
+    "denque": "^1.1.0",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack2": "0.0.6",
     "history": "^4.5.0",
