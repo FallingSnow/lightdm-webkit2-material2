@@ -86,7 +86,7 @@ class Background extends React.PureComponent {
                 break;
             case 'image':
                 this.style = Object.assign({}, Style, {
-                    backgroundImage: 'url(\'file:///' + settings.backgroundImageLocation + '\'), url(\'' + require('../static/no-mans-sky.jpg') + '\')'
+                    backgroundImage: 'url(\'file://' + settings.backgroundImageLocation + '\'), url(\'' + require('../static/no-mans-sky.jpg') + '\')'
                 });
                 break;
             case 'random-image':
