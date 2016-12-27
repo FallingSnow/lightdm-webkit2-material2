@@ -24,9 +24,6 @@ const config = {
 
     module: {
         preLoaders: [{
-            test: /\.js/,
-            loader: 'import-glob'
-        }, {
             test: /\.jsx?$/,
             exclude: [/src\//, /node_modules\/intl-/],
             loader: 'source-map'
