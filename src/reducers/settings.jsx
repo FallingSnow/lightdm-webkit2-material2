@@ -12,10 +12,10 @@ let initialState = {
     'animation': 'fadeIn',
     'animationDuration': 1000,
     'userName': lightdm.users[0].name,
-    'backgroundImageLocation': '/var/lib/AccountsService/backgrounds/ayrton',
-    'backgroundImagesDirectory': config.get_str('branding', 'background_images') || config.get_str('greeter', 'background_images') || '/usr/share/antergos/wallpapers',
+    'backgroundImagesDirectory': config.get_str('branding', 'background_images') || config.get_str('greeter', 'background_images') || '',
     'scaling': 1
 };
+initialState['backgroundImageLocation'] = greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] || initialState['backgroundImagesDirectory'] + '/background';
 
 // Load settings from localStorage
 let loadedSettings = {};

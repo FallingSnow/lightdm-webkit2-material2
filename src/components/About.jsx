@@ -14,6 +14,7 @@ import {
     CardText
 } from 'material-ui/Card';
 import {FormattedMessage} from 'react-intl';
+const PackageConfig = require('../../package.json');
 
 export default class About extends React.PureComponent {
     constructor(props) {
@@ -39,23 +40,25 @@ export default class About extends React.PureComponent {
                     }}><FormattedMessage id="settingAProfileIcon" defaultMessage="Setting a profile icon"/></h4>
                     <br/>
                     <small><FormattedMessage id="seeForMoreInfo" defaultMessage="See {link} for more info." values={{
-                            link: <i key="link" style={{
-                                wordBreak: 'break-all'
-                            }}>https://github.com/Antergos/lightdm-webkit2-greeter/tree/master/themes/antergos#user-icons-management</i>
-                        }}/></small>
+                link: <i key="link" style={{
+                        wordBreak: 'break-all'
+                    }}>https://github.com/Antergos/lightdm-webkit2-greeter/tree/master/themes/antergos#user-icons-management</i>
+            }}/></small>
                     <br/><br/>
-                    <div style={{
+                    <section style={{
                         textAlign: 'center'
                     }}>
-                        <small>Crafted with
-                            &nbsp;<i className="fa fa-heart"></i>&nbsp;
-                            in the USA.</small>
-                    </div>
+                    <small>Crafted with &nbsp;<i className="fa fa-heart"></i>&nbsp; in the USA.</small>
+                        <br/>
+                            <small style={{fontSize: '0.6em', color: 'grey'}}><FormattedMessage id="version" defaultMessage="Version {version}" values={{
+                    version: PackageConfig.version + '-' + PackageConfig.subversion
+                }}/></small>
+        </section>
                 </div>https://github.com/Antergos/lightdm-webkit2-greeter/tree/master/themes/antergos#user-icons-management
                 <CardActions>
                     <FlatButton style={{
                         width: 100 + '%'
-                    }} icon={< i className = "fa fa-undo" > </i>} onTouchTap={() => this.props.router.push('/login')} label={<FormattedMessage id="back" defaultMessage="Back"/>}/>
+                    }} icon={< i className = "fa fa-undo" > </i>} onTouchTap={() => this.props.router.push('/login')} label={< FormattedMessage id = "back" defaultMessage = "Back" />}/>
                 </CardActions>
             </Card>
         );

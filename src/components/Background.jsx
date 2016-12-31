@@ -4,6 +4,7 @@ import Clock from 'react-clockwall';
 import Trianglify from './background/Trianglify.jsx';
 import Zodiac from './background/Zodiac.jsx';
 import RandomImage from './background/RandomImage.jsx';
+import Image from './background/Image.jsx';
 
 const Denque = require("denque");
 
@@ -78,16 +79,13 @@ class Background extends React.PureComponent {
         return true;
     }
     updateBackground(settings = this.props.settings) {
-        this.style = Style;
         this.background = null;
         switch (settings.backgroundEngine) {
             case 'zodiac':
                 this.background = <Zodiac colors={settings.backgroundColorScheme} density={settings.zodiacDensity}/>;
                 break;
             case 'image':
-                this.style = Object.assign({}, Style, {
-                    backgroundImage: 'url(\'file://' + settings.backgroundImageLocation + '\'), url(\'' + require('../static/no-mans-sky.jpg') + '\')'
-                });
+                this.background = <Image path={settings.backgroundImageLocation}/>;
                 break;
             case 'random-image':
                 this.background = <RandomImage directory={settings.backgroundImagesDirectory}/>;
@@ -130,7 +128,7 @@ class Background extends React.PureComponent {
     }
     render() {
         return (
-            <div style={this.style}>
+            <div style={Style}>
                 {this.background}
                 {this.clock}
             </div>

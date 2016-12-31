@@ -1,28 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
-const Style = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    width: 100 + 'vw',
-    height: 100 + 'vh',
-    backgroundSize: 'cover'
-};
+import Image from './Image.jsx';
 
 class RandomImage extends React.Component {
     constructor(props) {
         super(props);
         console.debug('RandomImage loaded.', this.props);
         if (!this.props.directory)
-            return console.error('Images directory could not be found in lightdm-webkit2 configuration.');
+            return console.error('Images directory prop not given.');
 
         this.imagePaths = greeterutil.dirlist(this.props.directory);
-    }
+        if (typeof this.imagePaths === 'undefined')
+            this.imagePaths = [''];
+        }
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.settings.backgroundImagesDirectory !== nextProps.settings.backgroundImagesDirectory)
+        if (this.props.backgroundImagesDirectory !== nextProps.backgroundImagesDirectory)
             return true;
         return false;
     }
@@ -31,21 +22,8 @@ class RandomImage extends React.Component {
         return this.imagePaths[imageIndex];
     }
     render() {
-        const computedStyle = Object.assign({}, Style, {
-            backgroundImage: 'url(\'file:///' + this.getRandomPath() + '\'), url(\'' + require('../../static/no-mans-sky.jpg') + '\')'
-        });
-        return (<div style={computedStyle} id="random-image"/>)
+        return (<Image path={this.getRandomPath()} />);
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        settings: {
-            backgroundEngine: state.settings.backgroundEngine,
-            backgroundColorScheme: state.settings.backgroundColorScheme,
-            particleGroundDensity: state.settings.particleGroundDensity
-        }
-    };
-}
-
-export default connect(mapStateToProps)(RandomImage);
+export default RandomImage;

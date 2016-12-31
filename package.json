@@ -7,10 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "build": "cross-env NODE_ENV=production webpack -p --progress",
+    "build": "tools/build.js",
     "clean": "rm -rf build/*",
-    "package": "npm run build && tar -C build -cvzf lightdm-webkit2-material2-0.0.1-3.tar.gz .",
-    "translate": "node tools/translate.js",
+    "translate": "tools/translate.js",
     "preinstall": "git submodule update --init --recursive"
   },
   "repository": {
