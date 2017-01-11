@@ -17,6 +17,7 @@ import {
 } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import Slider from 'material-ui/Slider';
+import RCSlider from 'rc-slider';
 import moment from 'moment';
 import {FormattedMessage} from 'react-intl';
 import debounce from 'lodash.debounce';
@@ -88,9 +89,20 @@ class Settings extends React.PureComponent {
                 {
                     const min = 5000,
                         max = 100000;
+
+                    if (this.props.settings.zodiacDensity < min || this.props.settings.zodiacDensity > max) {
+                        this.state.zodiacDensityError = <FormattedMessage id="zodiacDensityError" defaultMessage="Density must be between {min} and {max}" values={{min, max}}/>;
+                    }
                     backgroundEngineOptions.push(
-                        <TextField fullWidth={true} min={min} max={max} step={5000} key="zodiacDensity" value={this.props.settings.zodiacDensity} floatingLabelText={< i className = "fa fa-cubes" > <FormattedMessage id="density" defaultMessage="Density"/> < /i>} type="number" onChange={(e, index, val) => {
-                            this.props.changeSetting('zodiacDensity', index, val)
+                        <TextField fullWidth={true} min={min} max={max} step={5000} key="zodiacDensity" value={this.props.settings.zodiacDensity} floatingLabelText={< i className = "fa fa-cubes" > <FormattedMessage id="density" defaultMessage="Density"/> < /i>} errorText={this.state.zodiacDensityError} type="number" onChange={(e, index, val) => {
+                                if (typeof val === 'undefined')
+                                    val = index;
+                                if (val < min || val > max) {
+                                    this.setState({zodiacDensityError: <FormattedMessage id="zodiacDensityError" defaultMessage="Density must be between {min} and {max}" values={{min, max}}/>});
+                                } else {
+                                    this.setState({zodiacDensityError: ''});
+                                }
+                                this.props.changeSetting('zodiacDensity', index, val);
                         }}/>
                     );
                 }
@@ -187,6 +199,17 @@ class Settings extends React.PureComponent {
                     }}>
                         {animationMenuItems}
                     </SelectField>
+                    <div>
+                        <label><i className="fa fa-magnet"/>&nbsp;
+                            <FormattedMessage id="alignment" defaultMessage="Alignment"/></label>
+                        <RCSlider value={this.props.settings.alignment} onChange={(val) => {
+                            this.props.changeSetting('alignment', null, val)
+                        }} min={0} max={2} marks={{
+                            0: <i className="fa fa-align-left"/>,
+                            1: <i className="fa fa-align-center"/>,
+                            2: <i className="fa fa-align-right"/>
+                        }}/>
+                    </div>
                     <div>
                         <label><i className="fa fa-expand"/>&nbsp;
                             <FormattedMessage id="uiScaling" defaultMessage="UI Scaling - {scale}%" values={{

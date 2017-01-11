@@ -71,3 +71,19 @@ body {
 .code {
     font-family: "Courier New" !important;
 }
+
+#app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 5vh 5vw;
+    &.align-left {
+        justify-content: flex-start;
+    }
+
+    &.align-right {
+        justify-content: flex-end;
+    }
+}

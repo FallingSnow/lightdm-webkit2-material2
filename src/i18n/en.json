@@ -40,5 +40,8 @@
     "yellow": "Yellow",
     "brown": "Brown",
     "image": "Image",
-    "randomImage": "Random Image"
+    "randomImage": "Random Image",
+    "alignment": "Alignment",
+    "incorrectPassword": "Incorrect password",
+    "zodiacDensityError": "Density must be between {min} and {max}"
 }

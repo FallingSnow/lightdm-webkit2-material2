@@ -35,11 +35,19 @@ for (target of targetLanguages) {
         for (let translationIndex in result) {
             output[translationKeys[translationIndex]] = result[translationIndex].TranslatedText;
         }
+
+        console.log('Reconstructing linked values.');
         // Reconstruct template values
         for (let key in output) {
-            if (output[key].indexOf('{') > -1) {
-                output[key] = output[key].replace(/\{.+\}/, en[key].match(/\{.+\}/)[0]);
-            }
+            let originalMatches = en[key].match(/\{.+?\}/g),
+                matches = output[key].match(/\{.+?\}/g);
+
+            // replace matches with original matches
+            if (matches !== null)
+                for (let i in matches) {
+                    console.log('Replacing', matches[i], 'with', originalMatches[i])
+                    output[key] = output[key].replace(matches[i], originalMatches[i]);
+                }
         }
 
         jsonfile.writeFile(filename, output, function(err) {
@@ -47,4 +55,5 @@ for (target of targetLanguages) {
                 console.error(err);
         });
     });
+    break;
 }

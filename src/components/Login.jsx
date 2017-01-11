@@ -101,7 +101,7 @@ class Login extends React.Component {
             }, 1000);
             return;
         } else {
-            this.setState({password: '', passwordError: 'Incorrect password.'});
+            this.setState({password: '', passwordError: <FormattedMessage id="incorrectPassword" defaultMessage="Incorrect password"/>});
             return document.getElementById('password-input').focus();
         }
     }

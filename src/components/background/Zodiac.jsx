@@ -11,7 +11,8 @@ const Style = {
     width: 100 + 'vw',
     height: 100 + 'vh'
 };
-const min = 5000, max = 100000;
+const min = 5000,
+    max = 100000;
 
 export default class Zodiac extends React.PureComponent {
     constructor(props) {
@@ -113,14 +114,15 @@ export default class Zodiac extends React.PureComponent {
         let density = Math.max(Math.min(max, this.props.density), min);
 
         if (density !== this.props.density) {
-            console.warn('Zodiac density bounds exceeded.');
+            console.warn('Zodiac density bounds exceeded. Given:', this.props.density, ' Rendering:', density);
         }
 
-        let linkDistance = Math.log(this.props.density) * 10;
+
+        let linkDistance = Math.log(density) * 10;
         this.zd = new zodiac(document.getElementById('zodiac'), {
             dotColor: this.dotColor,
             linkColor: this.lineColor,
-            density: this.props.density,
+            density,
             linkDistance: linkDistance
         });
     }

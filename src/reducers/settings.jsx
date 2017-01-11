@@ -13,7 +13,8 @@ let initialState = {
     'animationDuration': 1000,
     'userName': lightdm.users[0].name,
     'backgroundImagesDirectory': config.get_str('branding', 'background_images') || config.get_str('greeter', 'background_images') || '',
-    'scaling': 1
+    'scaling': 1,
+    'alignment': 1 // 0: left, 1: center, 2: right
 };
 initialState['backgroundImageLocation'] = greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] || initialState['backgroundImagesDirectory'] + '/background';
 

@@ -171,7 +171,7 @@ const config = {
     devtool: '#inline-source-map',
 
     devServer: {
-        port: process.env.PORT || 8084,
+        port: process.env.PORT || 8080,
         host: '0.0.0.0',
         colors: true,
         publicPath: '/',

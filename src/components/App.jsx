@@ -9,17 +9,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {green100, green500, green700, cyan500} from 'material-ui/styles/colors';
 
+import classNames from "classnames";
+
 import Footer from './Footer.jsx';
 import Background from './Background.jsx';
 
 const muiTheme = getMuiTheme({});
-
-const containerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 100 + 'vh'
-};
 
 class App extends React.PureComponent {
     constructor(props) {
@@ -43,9 +38,15 @@ class App extends React.PureComponent {
         addLocaleData([...locale]);
         // END LOCALIZATION
 
+        let alignmentClass = 'center';
+        if (this.props.settings.alignment === 0)
+            alignmentClass = 'left';
+        else if (this.props.settings.alignment === 2)
+            alignmentClass = 'right'
+
         return (
             <IntlProvider locale={languageCode.substring(0, 2)} messages={messages}>
-                <div id="app" style={containerStyle} className={'scaling-' + this.props.settings.scaling * 100 + ' locale-'+languageCode.substring(0, 2)}>
+                <div id="app" className={classNames('scaling-' + this.props.settings.scaling * 100, 'locale-' + languageCode.substring(0, 2), 'align-' + alignmentClass)}>
                     <Background {...this.props}/>
                     <ReactCSSTransitionGroup id="transition-container" transitionName={{
                         enter: this.props.settings.animation
