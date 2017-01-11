@@ -55,5 +55,4 @@ for (target of targetLanguages) {
                 console.error(err);
         });
     });
-    break;
 }
