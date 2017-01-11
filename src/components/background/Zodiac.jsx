@@ -110,7 +110,12 @@ export default class Zodiac extends React.PureComponent {
         document.getElementById('zodiac').style.backgroundColor = this.bgColor;
 
         // min <= density <= max
-        let density = Math.min(Math.max(min, this.props.density), max);
+        let density = Math.max(Math.min(max, this.props.density), min);
+
+        if (density !== this.props.density) {
+            console.warn('Zodiac density bounds exceeded.');
+        }
+
         let linkDistance = Math.log(this.props.density) * 10;
         this.zd = new zodiac(document.getElementById('zodiac'), {
             dotColor: this.dotColor,
