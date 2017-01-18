@@ -24,6 +24,7 @@
   "homepage": "https://github.com/FallingSnow/lightdm-webkit-material#readme",
   "dependencies": {
     "animate.css": "^3.5.2",
+    "capslock": "^1.0.1",
     "color-scheme": "0.0.5",
     "denque": "^1.1.0",
     "font-awesome": "^4.7.0",

@@ -17,6 +17,8 @@ import {
     CardText
 } from 'material-ui/Card';
 import {FormattedMessage} from 'react-intl';
+import {orange500} from 'material-ui/styles/colors';
+import capsLock from 'capslock';
 
 let users = [],
     sessions = [];
@@ -50,8 +52,18 @@ class Login extends React.Component {
         this.props.changeSetting('sessionKey', index, sessionKey);
         console.debug('Changed session to', sessionKey);
     }
+    passwordWarningStyle = {
+        color: orange500,
+        borderColor: orange500
+    }
     updatePassword = (event) => {
-        this.setState({password: event.target.value, passwordError: ''});
+
+        // Show warning if capslock is enabled
+        if (capsLock.status) {
+            this.setState({password: event.target.value, passwordError: 'Capslock is on.', passwordStyle: this.passwordWarningStyle});
+        } else {
+            this.setState({password: event.target.value, passwordError: '', passwordStyle: {}});
+        }
     }
     login(e) {
         e.preventDefault();
@@ -120,27 +132,27 @@ class Login extends React.Component {
     render() {
         let loginBtnStatus = {
             iconClass: 'fa-sign-in',
-            label: <FormattedMessage id="signIn" defaultMessage="sign in" />
+            label: <FormattedMessage id="signIn" defaultMessage="sign in"/>
         };
         if (this.state.authenticating) {
             loginBtnStatus = {
                 iconClass: 'fa-sign-in animated infinite flash',
-                label: <FormattedMessage id="signingIn" defaultMessage="signing in" />
+                label: <FormattedMessage id="signingIn" defaultMessage="signing in"/>
             };
         }
         return (
             <Card className="card animated">
                 <form onSubmit={this.login.bind(this)} id="login-form">
-                    <div className="header"><FormattedMessage id="welcomeBack" defaultMessage="Weclome Back" />!</div>
+                    <div className="header"><FormattedMessage id="welcomeBack" defaultMessage="Weclome Back"/>!</div>
                     <div id="avatarContainer">
                         <img className="avatar" src={this.state.avatarSrc} onError={this.defaultAvatar.bind(this)}/>
                     </div>
                     <div className="form-container">
-                        <SelectField fullWidth={true} floatingLabelText={<FormattedMessage id="user" defaultMessage="User" />} value={this.props.settings.userName} onChange={this.changeUserName}>
+                        <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName}>
                             {users}
                         </SelectField>
-                        <TextField id="password-input" fullWidth={true} floatingLabelText={<FormattedMessage id="password" defaultMessage="Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
-                        <SelectField fullWidth={true} floatingLabelText={<FormattedMessage id="session" defaultMessage="Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
+                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
+                        <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "session" defaultMessage = "Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
                             {sessions}
                         </SelectField>
                     </div>
