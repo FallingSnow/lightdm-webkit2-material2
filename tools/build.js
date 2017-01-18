@@ -31,7 +31,7 @@ function build() {
 
 function package() {
     return new Promise(function(resolve, reject) {
-        const tar = spawn('tar', ['-C', 'build', '-cvzf', 'lightdm-webkit2-material2-0.0.1-3.tar.gz', '.'], {
+        const tar = spawn('tar', ['-C', 'build', '-cvzf', 'lightdm-webkit2-material2-'+PackageConfig.version+'.tar.gz', '.'], {
             cwd: dir
         });
         tar.stdout.on('data', (data) => {
