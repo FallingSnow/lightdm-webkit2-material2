@@ -51,7 +51,7 @@ export default class About extends React.PureComponent {
                     <small>Crafted with &nbsp;<i className="fa fa-heart"></i>&nbsp; in the USA.</small>
                         <br/>
                             <small style={{fontSize: '0.6em', color: 'grey'}}><FormattedMessage id="version" defaultMessage="Version {version}" values={{
-                    version: PackageConfig.version + '-' + PackageConfig.subversion
+                    version: PackageConfig.version
                 }}/></small>
         </section>
                 </div>https://github.com/Antergos/lightdm-webkit2-greeter/tree/master/themes/antergos#user-icons-management
