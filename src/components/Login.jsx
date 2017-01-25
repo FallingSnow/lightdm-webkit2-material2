@@ -67,7 +67,6 @@ class Login extends React.Component {
     }
     login(e) {
         e.preventDefault();
-        dfg
         lightdm.cancel_autologin();
 
         if (lightdm.in_authentication)
