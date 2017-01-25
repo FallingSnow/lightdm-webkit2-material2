@@ -100,3 +100,64 @@ body {
         display: inline-block;
     }
 }
+
+.dev-console {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    & &-inner-container {
+        overflow: auto;
+    }
+
+    & &-message {
+        padding: 0 !important;
+
+        .dev-console-message-title {
+            padding: 0.8em 0.5em;
+            transition: none;
+        }
+
+        .dev-console-message-error-stack {
+            padding: 0.5em 20px;
+            white-space: pre-wrap;
+        }
+
+        &.expandable {
+            .dev-console-message-title {
+                cursor: pointer;
+            }
+
+            &.expanded {
+                background-color: #eee;
+
+                .dev-console-message-title {
+                    padding-bottom: 0.4em;
+                }
+            }
+
+            &:hover {
+                background-color: #eee;
+            }
+        }
+
+        .dev-console-message-error-stack {
+            margin: 0;
+            font-size: 0.85em;
+        }
+    }
+}
+
+#dev-console {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    max-height: 35vh;
+    min-width: 20vw;
+    max-width: 30vw;
+}

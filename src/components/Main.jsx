@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDevTools} from 'redux-devtools';
+import {createDevTools, persistState} from 'redux-devtools';
 import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
 
@@ -9,8 +9,8 @@ import {green100, green500, green700, cyan500} from 'material-ui/styles/colors';
 const muiTheme = getMuiTheme({});
 
 import {createHashHistory, useBasename} from 'history';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import {createStore, combineReducers, applyMiddleware, compose, bindActionCreators} from 'redux';
+import {Provider, connect} from 'react-redux';
 import {Router, Route, IndexRedirect} from 'react-router';
 import {routerMiddleware, syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import * as reducers from '../reducers';
@@ -34,17 +34,37 @@ initializedHistory.getCurrentLocation = () => (initializedHistory.location);
 
 const middleware = routerMiddleware(initializedHistory);
 
-let store = createStore(reducer, applyMiddleware(middleware));
-let DevTools,
-    stats;
+function getDebugSessionKey() {
+  // You can write custom logic here!
+  // By default we try to read the key from ?debug_session=<key> in the address bar
+  const matches = window.location.href.match(/[?&]debug_session=([^&#]+)\b/);
+  return (matches && matches.length > 0)? matches[1] : null;
+}
+
+let enhancer = compose(
+  applyMiddleware(middleware)
+);
+
+// Setup devtools
+let DevTools;
 if (process.env.NODE_ENV === 'development') {
     DevTools = createDevTools(
-        <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
+        <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q" defaultIsVisible={false}>
             <LogMonitor theme="tomorrow" preserveScrollTop={false}/>
         </DockMonitor>
     );
-    store = createStore(reducer, DevTools.instrument(), applyMiddleware(middleware));
+
+    enhancer = compose(
+      // Middleware you want to use in development:
+      applyMiddleware(middleware),
+      // Required! Enable Redux DevTools with the monitors you chose
+      DevTools.instrument(),
+      // Optional. Lets you write ?debug_session=<key> in address bar to persist debug sessions
+      persistState(getDebugSessionKey())
+    );
 }
+
+let store = createStore(reducer, {}, enhancer);
 
 const history = syncHistoryWithStore(initializedHistory, store);
 

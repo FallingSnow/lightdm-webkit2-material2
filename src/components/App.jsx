@@ -20,6 +20,7 @@ class App extends React.PureComponent {
     constructor(props) {
         super(props);
         console.debug('App loaded.', this.props);
+        this.initErrorCatch();
     }
     getLanguageCodeByName(name) {
         for (let language of lightdm.languages) {
@@ -27,6 +28,9 @@ class App extends React.PureComponent {
                 return language.code;
             }
         return 'en';
+    }
+    initErrorCatch() {
+        window.onerror = this.props.addError;
     }
     render() {
         let languageCode = this.getLanguageCodeByName(this.props.settings.language).substring(0, 5);
@@ -61,13 +65,15 @@ class App extends React.PureComponent {
 }
 
 import {changeSetting} from '../actions/settings.js';
+import {addError} from '../actions/errors.js';
 function mapStateToProps(state) {
     return {settings: state.settings};
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        changeSetting: bindActionCreators(changeSetting, dispatch)
+        changeSetting: bindActionCreators(changeSetting, dispatch),
+        addError: bindActionCreators(addError, dispatch)
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

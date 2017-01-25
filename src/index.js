@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 LightDMMock = require("../LightDMMock/mock/LightDMMock.js")
-if(!("lightdm" in window)) {
+if (!("lightdm" in window)) {
     var LightDMMock = LightDMMock || {};
     window.lightdm = new LightDMMock(true, 0, false);
     window.lightdm.languages.push({code: 'es-ES', name: 'Spanish', territory: null});
@@ -22,7 +22,7 @@ if(!("lightdm" in window)) {
     console.log(lightdm.users)
     lightdm.can_shutdown = lightdm.can_restart = lightdm.can_suspend = lightdm.can_hibernate = true;
 
-    if(!("config" in window)) {
+    if (!("config" in window)) {
         window.config = {
             get_bool: function(key) {
                 return true;
@@ -32,10 +32,10 @@ if(!("lightdm" in window)) {
             },
             get_num: function(key) {
                 return 0;
-            },
+            }
         };
     }
-    if(!("greeterutil" in window)) {
+    if (!("greeterutil" in window)) {
         window.greeterutil = {
             dirlist: function(dir) {
                 return [];
@@ -50,7 +50,7 @@ require("animate.css");
 
 function init() {
     let Main = require('./components/Main.jsx').default;
-    ReactDom.render( < Main / > , document.getElementById('wrapper'));
+    ReactDom.render(< Main / >, document.getElementById('wrapper'));
 }
 
 init();
