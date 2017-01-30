@@ -43,7 +43,6 @@ export default class Console extends React.PureComponent {
     render() {
         let messages = [],
             i = 0;
-        console.log(this.props.messages)
         for (let m of this.props.messages) {
             if (m.type === 'error')
                 messages.push(<Error error={m} key={i++}/>)

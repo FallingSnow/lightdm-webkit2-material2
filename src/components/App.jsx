@@ -5,16 +5,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {IntlProvider, FormattedMessage, addLocaleData} from 'react-intl';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {green100, green500, green700, cyan500} from 'material-ui/styles/colors';
-
 import classNames from "classnames";
 
 import Footer from './Footer.jsx';
 import Background from './Background.jsx';
-
-const muiTheme = getMuiTheme({});
 
 class App extends React.PureComponent {
     constructor(props) {
@@ -37,9 +31,15 @@ class App extends React.PureComponent {
         let segment = this.props.location.pathname.split('/')[1] || 'root';
 
         // LOCALIZATION
-        let locale = require('react-intl/locale-data/' + languageCode.substring(0, 2));
-        let messages = require("../i18n/" + languageCode.substring(0, 2) + ".json");
-        addLocaleData([...locale]);
+        let locale = "",
+            messages = [];
+        try {
+            locale = require('react-intl/locale-data/' + languageCode.substring(0, 2));
+            messages = require("../i18n/" + languageCode.substring(0, 2) + ".json");
+            addLocaleData([...locale]);
+        } catch (e) {
+            console.warn('Could not load localization:', e);
+        }
         // END LOCALIZATION
 
         let alignmentClass = 'center';
