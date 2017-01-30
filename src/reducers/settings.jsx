@@ -18,6 +18,10 @@ let initialState = {
 };
 initialState['backgroundImageLocation'] = greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] || initialState['backgroundImagesDirectory'] + '/background';
 
+// If hide users is set with lightdm, then clear the default users
+if (lightdm.hide_users)
+    initialState.userName = '';
+
 // Load settings from localStorage
 let loadedSettings = {};
 const settingKeys = Object.keys(initialState);
@@ -43,7 +47,7 @@ function getUserByName(name) {
     return false;
 }
 
-loadedSettings['sessionKey'] = getUserByName(loadedSettings['userName']).session;
+loadedSettings['sessionKey'] = getUserByName(loadedSettings['userName']).session || lightdm.sessions[0].key;
 
 export default function(state = loadedSettings, action) {
     Object.freeze(state);

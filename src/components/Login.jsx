@@ -45,8 +45,9 @@ class Login extends React.Component {
     }
     changeUserName = (event, index, selectedUserName) => {
         this.props.changeSetting('userName', index, selectedUserName);
-        this.changesessionKey(null, null, this.getUserByName(selectedUserName).session);
-        console.debug('Changed user to', selectedUserName);
+        if (this.getUserByName(selectedUserName).session)
+            this.changesessionKey(null, null, this.getUserByName(selectedUserName).session);
+        console.debug('Changed user to', selectedUserName || index);
     };
     changesessionKey = (event, index, sessionKey) => {
         this.props.changeSetting('sessionKey', index, sessionKey);
@@ -140,6 +141,15 @@ class Login extends React.Component {
                 label: <FormattedMessage id="signingIn" defaultMessage="signing in"/>
             };
         }
+        
+        // Default: allow users to select from a list of users
+        let userSelect = <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName}>
+            {users}
+        </SelectField>;
+        // Require users to input their username
+        if (lightdm.hide_users) {
+            userSelect = <TextField fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName} autoFocus={lightdm.hide_users}/>
+        }
         return (
             <Card className="card animated">
                 <form onSubmit={this.login.bind(this)} id="login-form">
@@ -148,10 +158,8 @@ class Login extends React.Component {
                         <img className="avatar" src={this.state.avatarSrc} onError={this.defaultAvatar.bind(this)}/>
                     </div>
                     <div className="form-container">
-                        <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName}>
-                            {users}
-                        </SelectField>
-                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
+                        {userSelect}
+                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
                         <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "session" defaultMessage = "Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
                             {sessions}
                         </SelectField>
