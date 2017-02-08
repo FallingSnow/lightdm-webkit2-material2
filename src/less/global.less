@@ -53,6 +53,8 @@ body {
     overflow: auto;
 
     > div {
+        overflow: hidden;
+
         label:not([for]) {
             transform-origin: left bottom 0;
             transform: scale(0.75);
@@ -93,6 +95,12 @@ body {
     transition: border-color 1.3s !important;
 }
 
+input[type="text"] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .fa {
     &:before {
         width: 1.285714em;
@@ -126,6 +134,11 @@ body {
         .dev-console-message-error-stack {
             padding: 0.5em 20px;
             white-space: pre-wrap;
+        }
+
+        .dev-console-message-timestamp {
+            color: grey;
+            font-size: 0.8em;
         }
 
         &.expandable {

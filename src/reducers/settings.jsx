@@ -12,11 +12,12 @@ let initialState = {
     'animation': 'fadeIn',
     'animationDuration': 1000,
     'userName': lightdm.users[0].name,
-    'backgroundImagesDirectory': config.get_str('branding', 'background_images') || config.get_str('greeter', 'background_images') || '',
+    'backgroundImagesDirectory': config.get_str('branding', 'background_images') || config.get_str('greeter', 'background_images') || '/var/lib/AccountsService/backgrounds',
     'scaling': 1,
     'alignment': 1 // 0: left, 1: center, 2: right
 };
-initialState['backgroundImageLocation'] = greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] || initialState['backgroundImagesDirectory'] + '/background';
+let firstImage = greeterutil.dirlist(initialState['backgroundImagesDirectory']) ? greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] : false;
+initialState['backgroundImageLocation'] = firstImage || '';
 
 // If hide users is set with lightdm, then clear the default users
 if (lightdm.hide_users)

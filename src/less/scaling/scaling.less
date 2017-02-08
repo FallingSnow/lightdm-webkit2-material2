@@ -1,9 +1,3 @@
-[class^="scaling-"] {
-    * {
-        transition: all 0.4s;
-    }
-}
-
 .loop(@initialScale, @endScale) when (@initialScale =< @endScale) {
     @scale: @initialScale / 100;
     .loop((@initialScale + 25), @endScale);

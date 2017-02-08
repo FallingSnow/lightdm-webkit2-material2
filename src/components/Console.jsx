@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import moment from 'moment';
 
 import {
     Card,
@@ -27,7 +28,7 @@ class Error extends React.PureComponent {
             : null;
         return (
             <CardText className={classNames("dev-console-message expandable", {expanded: this.state.expanded})}>
-                <div className="dev-console-message-title" onTouchTap={this.toggleExpand.bind(this)}><i className="fa fa-exclamation"/> {err.msg}</div>
+                <div className="dev-console-message-title" onTouchTap={this.toggleExpand.bind(this)}><i className="fa fa-exclamation"/> <span className="dev-console-message-timestamp">{moment().format('HH:mm:ss.SS')} |</span> {err.msg}</div>
                 {stack}
             </CardText>
         );

@@ -16,10 +16,11 @@ if (!("lightdm" in window)) {
     window.lightdm.languages.push({code: 'ar-SR', name: 'Arabic', territory: null});
     window.lightdm.languages.push({code: 'ja-JP', name: 'Japanese', territory: null});
     window.lightdm.languages.push({code: 'zh-HK', name: 'Chinese', territory: null});
+    window.lightdm.languages.push({code: 'he-IS', name: 'Hebrew', territory: null});
     for (let user of lightdm.users) {
         user.username = user.name;
     }
-    console.log(lightdm.users)
+    console.info('Mock users loaded:',lightdm.users)
     lightdm.can_shutdown = lightdm.can_restart = lightdm.can_suspend = lightdm.can_hibernate = true;
 
     if (!("config" in window)) {
@@ -38,7 +39,7 @@ if (!("lightdm" in window)) {
     if (!("greeterutil" in window)) {
         window.greeterutil = {
             dirlist: function(dir) {
-                return [];
+                return undefined;
             }
         }
     }

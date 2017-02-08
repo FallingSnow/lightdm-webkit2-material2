@@ -29,7 +29,7 @@ function build() {
     });
 }
 
-function package() {
+function pack() {
     return new Promise(function(resolve, reject) {
         const tar = spawn('tar', ['-C', 'build', '-cvzf', 'lightdm-webkit2-material2-'+PackageConfig.version+'.tar.gz', '.'], {
             cwd: dir
@@ -44,11 +44,23 @@ function package() {
 
         tar.on('close', (code) => {
             console.log(`child process exited with code ${code}`);
-            resolve();
+            if (code === 0)
+                resolve();
+            else {
+                reject();
+            }
         });
     });
 }
 
-build().then(package).then(function() {
-    console.log('Build Complete!');
+build().then(() => new Promise((resolve, reject) => {
+    if (process.argv.indexOf('-p') > 0) {
+        pack().then(resolve, reject);
+    } else {
+        resolve();
+    }
+})).then(function() {
+    console.log('Done!');
+}).catch((err) => {
+    console.log('ERROR:', err);
 });
