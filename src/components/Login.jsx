@@ -43,13 +43,13 @@ class Login extends React.Component {
         window.show_prompt = this.show_prompt.bind(this);
         window.show_message = this.show_message.bind(this);
     }
-    changeUserName(event, index, selectedUserName) {
+    changeUserName = (event, index, selectedUserName) => {
         this.props.changeSetting('userName', index, selectedUserName);
         if (this.getUserByName(selectedUserName).session)
             this.changesessionKey(null, null, this.getUserByName(selectedUserName).session);
         console.debug('Changed user to', selectedUserName || index);
     }
-    changesessionKey(event, index, sessionKey) {
+    changesessionKey = (event, index, sessionKey) => {
         this.props.changeSetting('sessionKey', index, sessionKey);
         console.debug('Changed session to', sessionKey);
     }
@@ -57,7 +57,7 @@ class Login extends React.Component {
         color: orange500,
         borderColor: orange500
     }
-    updatePassword(event) {
+    updatePassword = (event) => {
 
         // Show warning if capslock is enabled
         if (capsLock.status) {
@@ -159,7 +159,7 @@ class Login extends React.Component {
                     </div>
                     <div className="form-container">
                         {userSelect}
-                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword.bind(this)} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
+                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePasswordy} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
                         <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "session" defaultMessage = "Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
                             {sessions}
                         </SelectField>

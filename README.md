@@ -1,4 +1,5 @@
 ## A Material design LightDM Webkit2 greeter theme
+# [DEMO](https://fallingsnow.github.io/lightdm-webkit2-material2)
 
 This is a theme for LightDM Webkit2 (`lightdm-webkit2-greeter`).
 
@@ -16,9 +17,10 @@ Created for Arch Linux.
 - Restart, shutdown, suspend, and hibernate the computer
 - Select session (GNOME, KDE, Xfce or other installed DE)
 - Select your language
-- 4 different types of background (trianglify, image, random-image, and zodiac)
-- HiDpi screen support via UI scaling
 - Full i18n localization
+- 4 different types of background (trianglify, image, random-image, and zodiac)
+- LDAP support via lighdm's hide_users
+- HiDpi screen support via UI scaling
 - And the most important thing, A CLOCK WITH SECONDS!!!
 
 ### How to install
