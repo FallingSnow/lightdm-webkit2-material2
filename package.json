@@ -1,6 +1,6 @@
 {
   "name": "lightdm-webkit2-material2",
-  "version": "0.0.3-1",
+  "version": "0.0.3",
   "description": "A material design theme for use with lightdm-webkit2-greeter.",
   "main": "index.js",
   "scripts": {
