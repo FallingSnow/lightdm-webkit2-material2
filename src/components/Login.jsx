@@ -159,7 +159,7 @@ class Login extends React.Component {
                     </div>
                     <div className="form-container">
                         {userSelect}
-                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePasswordy} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
+                        <TextField id="password-input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
                         <SelectField fullWidth={true} floatingLabelText={< FormattedMessage id = "session" defaultMessage = "Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
                             {sessions}
                         </SelectField>

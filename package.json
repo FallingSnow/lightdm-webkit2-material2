@@ -1,6 +1,6 @@
 {
   "name": "lightdm-webkit2-material2",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A material design theme for use with lightdm-webkit2-greeter.",
   "main": "index.js",
   "scripts": {
@@ -82,7 +82,7 @@
     "redux-devtools-log-monitor": "^1.2.0",
     "source-map-loader": "^0.1.6",
     "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }

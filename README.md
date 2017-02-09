@@ -19,7 +19,7 @@ Created for Arch Linux.
 - Select your language
 - Full i18n localization
 - 4 different types of background (trianglify, image, random-image, and zodiac)
-- LDAP support via lighdm's hide_users
+- LDAP support via lightdm's hide_users
 - HiDpi screen support via UI scaling
 - And the most important thing, A CLOCK WITH SECONDS!!!
 
