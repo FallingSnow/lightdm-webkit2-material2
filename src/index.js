@@ -45,10 +45,6 @@ if (!("lightdm" in window)) {
     }
 }
 
-require("font-awesome-webpack2");
-require("./less/style.less");
-require("animate.css");
-
 function init() {
     let Main = require('./components/Main.jsx').default;
     ReactDom.render(< Main / >, document.getElementById('wrapper'));

@@ -68,10 +68,11 @@ class Settings extends React.PureComponent {
         super(props);
         console.debug('Settings loaded.', this.props);
         this.accessableBackgroundDirectory = config.get_str('branding', 'background_images');
-        console.log(this.state)
     }
     state = {
-        settings: this.props.settings
+        settings: this.props.settings,
+        alignment: this.props.settings.alignment,
+        scaling: this.props.settings.scaling
     };
     goTo(destinaton) {
         let _self = this;
@@ -202,7 +203,7 @@ class Settings extends React.PureComponent {
                     <div>
                         <label><i className="fa fa-magnet"/>&nbsp;
                             <FormattedMessage id="alignment" defaultMessage="Alignment"/></label>
-                        <RCSlider value={this.props.settings.alignment} onChange={(val) => {
+                        <RCSlider value={this.state.alignment} onChange={val => this.setState({alignment: val})} onAfterChange={(val) => {
                             this.props.changeSetting('alignment', null, val)
                         }} min={0} max={2} marks={{
                             0: <i className="fa fa-align-left"/>,
@@ -213,10 +214,10 @@ class Settings extends React.PureComponent {
                     <div>
                         <label><i className="fa fa-expand"/>&nbsp;
                             <FormattedMessage id="uiScaling" defaultMessage="UI Scaling - {scale}%" values={{
-                                scale: this.props.settings.scaling * 100
+                                scale: this.state.scaling * 100
                             }}/></label>
-                        <Slider step={.25} value={this.props.settings.scaling} onChange={(e, index, val) => {
-                            this.props.changeSetting('scaling', index, val)
+                        <Slider step={.25} value={this.state.scaling} onChange={(e, val) => this.setState({scaling: val})} onDragStop={(e, index, val) => {
+                            this.props.changeSetting('scaling', null, this.state.scaling)
                         }} min={.5} max={2.5}/>
                     </div>
                 </div>

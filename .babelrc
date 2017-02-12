@@ -5,9 +5,12 @@
         "react",
         "stage-0"
     ],
-    "plugins": [
-        ["transform-react-jsx-source"],
-        ["transform-decorators-legacy"],
-        ["transform-react-jsx"]
-    ]
+    "env": {
+        "production": {
+            "plugins": [
+                "transform-react-constant-elements",
+                "transform-react-inline-elements"
+            ]
+        }
+    }
 }

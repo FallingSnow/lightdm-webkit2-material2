@@ -6,7 +6,7 @@ const dir = require('path').resolve(__dirname, '../');
 
 function build() {
     return new Promise(function(resolve, reject) {
-        const build = spawn('node_modules/.bin/cross-env', ['NODE_ENV=production', 'node_modules/.bin/webpack', '-p', '--progress'], {
+        const build = spawn('node_modules/.bin/cross-env', ['NODE_ENV=production', 'node_modules/.bin/webpack', '--progress'], {
             cwd: dir
         });
 
