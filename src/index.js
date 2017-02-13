@@ -1,6 +1,6 @@
 console.debug('Loading Theme');
 import React from 'react';
-import ReactDom from 'react-dom';
+import {render} from 'react-dom';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 // Needed for onTouchTap
@@ -47,7 +47,7 @@ if (!("lightdm" in window)) {
 
 function init() {
     let Main = require('./components/Main.jsx').default;
-    ReactDom.render(< Main / >, document.getElementById('wrapper'));
+    render(< Main / >, document.getElementById('wrapper'));
 }
 
 init();

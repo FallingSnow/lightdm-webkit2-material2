@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import _ from 'lodash';
+import map from 'lodash/map';
 
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import FlatButton from 'material-ui/FlatButton';
@@ -119,7 +119,7 @@ class Footer extends React.Component {
                         height: '100%'
                     }} iconStyle={Style.label} iconClassName="fa fa-question-circle"/>
                 </div>
-                <Console id="dev-console" show={this.state.showDevConsole} messages={_.map(this.props.errors, (error) => {
+                <Console id="dev-console" show={this.state.showDevConsole} messages={map(this.props.errors, (error) => {
                     return Object.assign(error, {type: 'error'});
                 })}/>
             </footer>

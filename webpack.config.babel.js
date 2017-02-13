@@ -1,13 +1,13 @@
 /*global __dirname*/
 
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import os from 'os';
-import DashboardPlugin from 'webpack-dashboard/plugin';
-import HappyPack from 'happypack';
-import SriPlugin from 'webpack-subresource-integrity';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const os = require('os');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const HappyPack = require('happypack');
+const SriPlugin = require('webpack-subresource-integrity');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -46,7 +46,13 @@ const config = {
     },
 
     resolve: {
-        extensions: ['.jsx', '.js', '.json', '.less']
+        extensions: ['.jsx', '.js', '.json', '.less'],
+        // alias: {
+        //     react: 'preact-compat',
+        //     "react-dom": 'preact-compat',
+        //     "react-tap-event-plugin": "preact-tap-event-plugin",
+        //     'react-addons-shallow-compare': 'shallow-compare'
+        // }
     },
 
     module: {
@@ -63,9 +69,6 @@ const config = {
                 //     test: /\.(jpe?g|png|gif|svg)$/i,
                 //     loader: 'happypack/loader?id=image'
                 // }, {
-                test: /\.json$/,
-                loader: 'happypack/loader?id=json'
-            }, {
                 test: /\.css$/,
                 loader: "happypack/loader?id=css"
             }, {
@@ -94,9 +97,6 @@ const config = {
                     }
                 ]
                 // }, {
-                //     test: /\.json$/,
-                //     loaders: ["json-loader"]
-                // }, {
                 //     test: /\.css$/,
                 //     loader: "style-loader!css-loader"
                 // }, {
@@ -124,10 +124,6 @@ const config = {
             new HappyPack(Object.assign({}, happyPackSettings, {
                 id: 'jsx',
                 loaders: ['babel-loader']
-            })),
-            new HappyPack(Object.assign({}, happyPackSettings, {
-                id: 'json',
-                loaders: ['json-loader']
             })),
             new HappyPack(Object.assign({}, happyPackSettings, {
                 id: 'file',
@@ -167,12 +163,8 @@ const config = {
             }),
         ])
         .concat(ENV === 'production' ? [
-            new webpack.BannerPlugin({
-                banner: 'require("babel-polyfill");',
-                raw: false,
-                entryOnly: true
-            }),
             new webpack.optimize.UglifyJsPlugin({
+                sourceMap: false,
                 compress: {
                     unsafe: true,
                     unsafe_comps: true,
@@ -192,8 +184,7 @@ const config = {
         colors: true
     },
 
-    // devtool: ENV === 'production' ? 'source-map' : '#inline-source-map',
-    devtool: '#inline-source-map',
+    devtool: ENV === 'production' ? 'source-map' : '#inline-source-map',
 
     devServer: {
         port: process.env.PORT || 8080,

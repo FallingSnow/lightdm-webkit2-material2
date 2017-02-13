@@ -51,10 +51,9 @@ body {
 .form-container {
     max-height: ~"calc(100vh - 300px)";
     overflow: auto;
+        display: inline-table;
 
     > div {
-        overflow: hidden;
-
         label:not([for]) {
             transform-origin: left bottom 0;
             transform: scale(0.75);

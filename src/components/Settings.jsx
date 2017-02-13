@@ -20,7 +20,7 @@ import Slider from 'material-ui/Slider';
 import RCSlider from 'rc-slider';
 import moment from 'moment';
 import {FormattedMessage} from 'react-intl';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 
 let languages = [],
     backgroundEngineMenuItems = [],

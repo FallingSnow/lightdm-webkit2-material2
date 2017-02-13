@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Animate from 'rc-animate';
 
 import {IntlProvider, FormattedMessage, addLocaleData} from 'react-intl';
 
@@ -48,15 +48,17 @@ class App extends React.PureComponent {
         else if (this.props.settings.alignment === 2)
             alignmentClass = 'right'
 
+        let children = React.cloneElement(this.props.children, {key: segment});
+
         return (
             <IntlProvider locale={languageCode.substring(0, 2)} messages={messages}>
                 <div id="app" className={classNames('scaling-' + this.props.settings.scaling * 100, 'locale-' + languageCode.substring(0, 2), 'align-' + alignmentClass)}>
                     <Background {...this.props}/>
-                    <ReactCSSTransitionGroup id="transition-container" transitionName={{
+                    <Animate transitionEnter={true} component="div" style={{position: 'relative'}} id="transition-container" transitionName={{
                         enter: this.props.settings.animation
-                    }} transitionEnterTimeout={1000} transitionEnter={true} transitionLeave={false}>
-                        {React.cloneElement(this.props.children, {key: segment})}
-                    </ReactCSSTransitionGroup>
+                    }} transitionLeave={false}>
+                        {children}
+                    </Animate>
                     <Footer {...this.props}/>
                 </div>
             </IntlProvider>
