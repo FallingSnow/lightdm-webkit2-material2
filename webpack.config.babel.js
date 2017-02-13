@@ -161,9 +161,6 @@ const config = {
                     collapseWhitespace: true
                 }
             }),
-            new SriPlugin({
-                hashFuncNames: ['sha256', 'sha384'],
-            }),
         ])
         .concat(ENV === 'production' ? [
             new webpack.optimize.UglifyJsPlugin({
@@ -174,6 +171,9 @@ const config = {
                     collapse_vars: true,
                     reduce_vars: true
                 }
+            }),
+            new SriPlugin({
+                hashFuncNames: ['sha256', 'sha384'],
             }),
         ] : [
             new DashboardPlugin(),
