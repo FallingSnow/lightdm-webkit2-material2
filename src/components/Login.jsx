@@ -107,12 +107,11 @@ class Login extends React.Component {
             this.authentication_complete();
         }
     authentication_complete() {
-        this.setState({authenticating: lightdm.in_authentication});
         if (lightdm.is_authenticated) {
             let _self = this;
             lightdm.login(lightdm.authentication_user, _self.props.settings.sessionKey);
         } else {
-            this.setState({password: '', passwordError: <FormattedMessage id="incorrectPassword" defaultMessage="Incorrect password"/>, passwordStyle: {}});
+            this.setState({password: '', passwordError: <FormattedMessage id="incorrectPassword" defaultMessage="Incorrect password"/>, passwordStyle: {}, authenticating: lightdm.in_authentication});
             document.getElementById('password-input').focus();
         }
     }
