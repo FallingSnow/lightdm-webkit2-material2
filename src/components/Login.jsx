@@ -72,10 +72,11 @@ class Login extends React.Component {
 
         if (lightdm.in_authentication)
             lightdm.cancel_authentication();
-        this.setState({authenticating: lightdm.in_authentication});
 
-        console.debug('Authenticating:', lightdm.in_authentication);
         lightdm.authenticate(this.props.settings.userName);
+        
+        console.debug('Authenticating:', lightdm.in_authentication);
+        this.setState({authenticating: lightdm.in_authentication});
     }
     defaultAvatar() {
         this.setState({avatarSrc: require('../static/avatar.png')});
@@ -111,7 +112,11 @@ class Login extends React.Component {
             let _self = this;
             lightdm.login(lightdm.authentication_user, _self.props.settings.sessionKey);
         } else {
-            this.setState({password: '', passwordError: <FormattedMessage id="incorrectPassword" defaultMessage="Incorrect password"/>, passwordStyle: {}, authenticating: lightdm.in_authentication});
+            this.setState({
+                password: '', passwordError: <FormattedMessage id="incorrectPassword" defaultMessage="Incorrect password"/>,
+                passwordStyle: {},
+                authenticating: lightdm.in_authentication
+            });
             document.getElementById('password-input').focus();
         }
     }
