@@ -39,6 +39,7 @@
                 height: @height !important;
                 line-height: @height !important;
             }
+
             .icon div {
                 line-height: 0 !important;
             }
@@ -46,7 +47,8 @@
 
         .form-container {
             padding: 10px * @scale;
-            > div {
+
+            .input {
                 height: 72px * @scale !important;
                 font-size: 16px * @scale !important;
 
@@ -66,6 +68,16 @@
                     width: 24px * @scale !important;
                     top: 22px * @scale !important;
                 }
+            }
+        }
+
+        .scrollbox {
+            &:before {
+                top: -10px * @scale;
+            }
+
+            &:after {
+                bottom: -10px * @scale;
             }
         }
 

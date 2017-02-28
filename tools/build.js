@@ -7,15 +7,8 @@ const dir = require('path').resolve(__dirname, '../');
 function build() {
     return new Promise(function(resolve, reject) {
         const build = spawn('node_modules/.bin/cross-env', ['NODE_ENV=production', 'node_modules/.bin/webpack', '--progress'], {
-            cwd: dir
-        });
-
-        build.stdout.on('data', (data) => {
-            console.log(`${data}`);
-        });
-
-        build.stderr.on('data', (data) => {
-            console.log(`${data}`);
+            cwd: dir,
+            stdio: 'inherit'
         });
 
         build.on('close', (code) => {
@@ -32,14 +25,8 @@ function build() {
 function pack() {
     return new Promise(function(resolve, reject) {
         const tar = spawn('tar', ['-C', 'build', '-cvaf', 'lightdm-webkit2-material2-'+PackageConfig.version+'.tar.gz', '.'], {
-            cwd: dir
-        });
-        tar.stdout.on('data', (data) => {
-            console.log(`${data}`);
-        });
-
-        tar.stderr.on('data', (data) => {
-            console.log(`${data}`);
+            cwd: dir,
+            stdio: 'inherit'
         });
 
         tar.on('close', (code) => {

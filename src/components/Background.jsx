@@ -94,7 +94,7 @@ class Background extends React.PureComponent {
                 this.background = <Trianglify colors={settings.backgroundColorScheme}/>;
                 break;
         }
-        console.debug('Updated background.', settings.backgroundEngine);
+        console.debug('Updated background. New engine:', settings.backgroundEngine);
     }
     updateClock(settings = this.props.settings) {
         let locale = getLanguageCodeByName(settings.language).substring(0, 2);

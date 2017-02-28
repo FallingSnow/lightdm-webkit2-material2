@@ -1,11 +1,11 @@
 {
   "name": "lightdm-webkit2-material2",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "A material design theme for use with lightdm-webkit2-greeter.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server --inline --hot --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
     "build": "tools/build.js",
     "pack": "tools/build.js -p",
     "clean": "rm -rf build/*",

@@ -5,16 +5,41 @@ body {
 }
 
 .scrollbox {
+    position: relative;
+    z-index: 1;
     overflow: auto;
-    background: linear-gradient(white 30%, hsla(0,0%,100%, 0)), linear-gradient(hsla(0,0%,100%,0) 10px, white 70%) bottom, radial-gradient(at top, rgba(0,0,0,0.2), transparent 70%), radial-gradient(at bottom, rgba(0,0,0,0.2), transparent 70%) bottom;
-    background-repeat: no-repeat;
-    background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
-    background-attachment: local, local, scroll, scroll;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
-    /* Opera doesn't support this in the shorthand */
-    background-attachment: local, local, scroll, scroll;
+    background: #FFF no-repeat;
+    background-image: -webkit-radial-gradient(50% 0, farthest-side, rgba(0,0,0,0.2), rgba(0,0,0,0)), -webkit-radial-gradient(50% 100%,farthest-side, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-image: -moz-radial-gradient(50% 0, farthest-side, rgba(0,0,0,0.2), rgba(0,0,0,0)), -moz-radial-gradient(50% 100%,farthest-side, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-image: radial-gradient(farthest-side at 50% 0, rgba(0,0,0,0.2), rgba(0,0,0,0)), radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    background-position: 0 0, 0 100%;
+    background-size: 100% 14px;
+
+    &:after,
+    &:before {
+        content: "";
+        z-index: -1;
+        display: block;
+        position: relative;
+        margin-bottom: -30px;
+        height: 30px;
+        background: -webkit-linear-gradient(top,#FFF,#FFF 30%,rgba(255,255,255,0));
+        background: -moz-linear-gradient(top,#FFF,#FFF 30%,rgba(255,255,255,0));
+        background: linear-gradient(to bottom,#FFF,#FFF 30%,rgba(255,255,255,0));
+    }
+
+    &:after {
+        margin-top: -30px;
+        margin-bottom: 0;
+        top: auto;
+        background: -webkit-linear-gradient(top,rgba(255,255,255,0),#FFF 70%,#FFF);
+        background: -moz-linear-gradient(top,rgba(255,255,255,0),#FFF 70%,#FFF);
+        background: linear-gradient(to bottom,rgba(255,255,255,0),#FFF 70%,#FFF);
+    }
+
+    > :last-child {
+        overflow: hidden;
+    }
 }
 
 #wrapper {
@@ -30,8 +55,11 @@ body {
 }
 
 .card {
-    max-height: 90vh;
-    overflow: auto;
+    > div {
+        display: flex;
+        flex-direction: column;
+        max-height: ~"calc(100vh - 80px)";
+    }
 }
 
 .header {
@@ -49,10 +77,13 @@ body {
     padding-top: 20px;
 }
 
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-container {
-    max-height: ~"calc(100vh - 300px)";
     overflow: auto;
-        display: inline-table;
 
     > div {
         label:not([for]) {
@@ -62,7 +93,32 @@ body {
             color: rgba(0, 0, 0, 0.298039);
         }
     }
-    /* .scrollbox; */
+
+    .browseBtn {
+        margin-left: 5px !important;
+        min-width: auto !important;
+        height: auto !important;
+        flex: auto 1 0;
+    }
+}
+
+.ImageGrid {
+    display: flex;
+    flex-wrap: wrap;
+
+    .selectableImage {
+        margin: 2px;
+        flex-grow: 1;
+        object-fit: cover;
+        height: 200px;
+        outline: 1px solid #E0E0E0;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &.active {
+            outline: 4px solid #03A9F4;
+        }
+    }
 }
 
 .avatar {
