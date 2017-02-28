@@ -67,13 +67,6 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
                     timeZoneMenuItems.push(<MenuItem value={timeZones[timeZoneIndex]} key={timeZoneIndex} primaryText={timeZones[timeZoneIndex]}/>);
                 }
 
-                const dialogFixedStyles = {
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingTop: 0
-                };
-
                 class ImageGrid extends React.PureComponent {
                     constructor(props) {
                         super(props);

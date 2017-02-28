@@ -7,54 +7,62 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-setTimeout(() => {
+// Load mock if in development mode
+if (!lightdm && process.env.NODE_ENV === 'development') {
+    const LightDMMock = require("../LightDMMock/mock/LightDMMock.js");
+    // const LightDMMock = require("../LightDMMock/src/LightDMMock.js");
+    window.lightdm = new LightDMMock(true, 0, false);
+    window.lightdm.languages.push({code: 'es-ES', name: 'Spanish', territory: null});
+    window.lightdm.languages.push({code: 'af-AF', name: 'Africanese', territory: null});
+    window.lightdm.languages.push({code: 'ar-SR', name: 'Arabic', territory: null});
+    window.lightdm.languages.push({code: 'ja-JP', name: 'Japanese', territory: null});
+    window.lightdm.languages.push({code: 'zh-HK', name: 'Chinese', territory: null});
+    window.lightdm.languages.push({code: 'he-IS', name: 'Hebrew', territory: null});
+    for (let user of lightdm.users) {
+        user.username = user.name;
+    }
+    console.info('Mock users loaded:', lightdm.users)
+    lightdm.can_shutdown = lightdm.can_restart = lightdm.can_suspend = lightdm.can_hibernate = true;
 
-    if (!("lightdm" in window)) {
-        if (process.env.NODE_ENV !== 'development') {
-            document.body.innerHTML += '<h1 style="background-color: white; color: red;">Lightdm did not load</h1>';
-            throw new Error('lightdm did not load in time');
-        } else {
-            const LightDMMock = require("../LightDMMock/mock/LightDMMock.js");
-            // const LightDMMock = require("../LightDMMock/src/LightDMMock.js");
-            if (!("lightdm" in window)) {
-                window.lightdm = new LightDMMock(true, 0, false);
-                window.lightdm.languages.push({code: 'es-ES', name: 'Spanish', territory: null});
-                window.lightdm.languages.push({code: 'af-AF', name: 'Africanese', territory: null});
-                window.lightdm.languages.push({code: 'ar-SR', name: 'Arabic', territory: null});
-                window.lightdm.languages.push({code: 'ja-JP', name: 'Japanese', territory: null});
-                window.lightdm.languages.push({code: 'zh-HK', name: 'Chinese', territory: null});
-                window.lightdm.languages.push({code: 'he-IS', name: 'Hebrew', territory: null});
-                for (let user of lightdm.users) {
-                    user.username = user.name;
-                }
-                console.info('Mock users loaded:', lightdm.users)
-                lightdm.can_shutdown = lightdm.can_restart = lightdm.can_suspend = lightdm.can_hibernate = true;
-
-                if (!("config" in window)) {
-                    window.config = {
-                        get_bool: function(key) {
-                            return true;
-                        },
-                        get_str: function(key) {
-                            return "";
-                        },
-                        get_num: function(key) {
-                            return 0;
-                        }
-                    };
-                }
-                if (!("greeterutil" in window)) {
-                    window.greeterutil = {
-                        dirlist: function(dir) {
-                            return undefined;
-                        }
-                    }
-                }
+    if (!("config" in window)) {
+        window.config = {
+            get_bool: function(key) {
+                return true;
+            },
+            get_str: function(key) {
+                return "";
+            },
+            get_num: function(key) {
+                return 0;
+            }
+        };
+    }
+    if (!("greeterutil" in window)) {
+        window.greeterutil = {
+            dirlist: function(dir) {
+                return undefined;
             }
         }
     }
+}
+
+if (!lightdm || !lightdm.languages) {
+    const timeout = setTimeout(() => {
+        clearInterval(interval);
+        document.body.innerHTML += '<h1 style="background-color: white; color: red;">Lightdm did not load</h1>';
+        throw new Error('lightdm did not load in time');
+    }, 1000);
+    const interval = setInterval(() => {
+
+        if (lightdm && lightdm.languages) {
+            clearInterval(interval);
+            clearTimeout(timeout);
+            return init();
+        }
+    }, 100);
+} else {
     init();
-}, 10);
+}
 
 function init() {
     let Main = require('./components/Main.jsx').default;
