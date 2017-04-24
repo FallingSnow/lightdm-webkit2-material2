@@ -8,7 +8,10 @@ const en = require('../src/i18n/en.json');
 const translationKeys = Object.keys(en);
 const translationStrings = Object.values(en);
 
-const targetLanguages = ['af', 'ar', 'bs-Latn', 'bg', 'ca', 'zh-CHS', 'hr', 'cs', 'da', 'nl', 'et', 'fi', 'fr', 'de', 'el', 'ht', 'he', 'hi', 'mww', 'hu', 'id', 'it', 'ja', 'sw', 'tlh', 'ko', 'lv', 'lt', 'ms', 'mt', 'no', 'fa', 'pl', 'pt', 'otq', 'ro', 'ru', 'sr-Cyrl', 'sk', 'sl', 'es', 'sv', 'th', 'tr', 'uk', 'ur', 'vi', 'cy', 'yua'];
+// The following languages have been manually translated and have therefore
+// been removed from the traget languages array:
+const handTranslated = ['pl'];
+const targetLanguages = ['af', 'ar', 'bs-Latn', 'bg', 'ca', 'zh-CHS', 'hr', 'cs', 'da', 'nl', 'et', 'fi', 'fr', 'de', 'el', 'ht', 'he', 'hi', 'mww', 'hu', 'id', 'it', 'ja', 'sw', 'tlh', 'ko', 'lv', 'lt', 'ms', 'mt', 'no', 'fa', 'pt', 'otq', 'ro', 'ru', 'sr-Cyrl', 'sk', 'sl', 'es', 'sv', 'th', 'tr', 'uk', 'ur', 'vi', 'cy', 'yua'];
 // const targetLanguages = ['zh-CHS', 'tlh', 'sr-Cyrl'];
 
 var client = new translator({
@@ -56,3 +59,6 @@ for (target of targetLanguages) {
         });
     });
 }
+process.on('exit', function() {
+    console.log("Make sure to update the handmade translations of", handTranslated.join(', '));
+});
