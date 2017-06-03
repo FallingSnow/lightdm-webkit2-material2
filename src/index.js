@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // Load mock if in development mode
-if (!(lightdm in window) && process.env.NODE_ENV === 'development') {
+if (!("lightdm" in window) && process.env.NODE_ENV === 'development') {
     const LightDMMock = require("../LightDMMock/mock/LightDMMock.js");
     // const LightDMMock = require("../LightDMMock/src/LightDMMock.js");
     window.lightdm = new LightDMMock(true, 0, false);
@@ -46,7 +46,7 @@ if (!(lightdm in window) && process.env.NODE_ENV === 'development') {
     }
 }
 
-if (!(lightdm in window) || !(typeof lightdm.languages === "object")) {
+if (!("lightdm" in window) || !(typeof lightdm.languages === "object")) {
     const timeout = setTimeout(() => {
         clearInterval(interval);
         document.body.innerHTML += '<h1 style="background-color: white; color: red;">Lightdm did not load</h1>';
@@ -54,7 +54,7 @@ if (!(lightdm in window) || !(typeof lightdm.languages === "object")) {
     }, 1000);
     const interval = setInterval(() => {
 
-        if (lightdm in window && typeof lightdm.languages === "object") {
+        if ("lightdm" in window && typeof lightdm.languages === "object") {
             clearInterval(interval);
             clearTimeout(timeout);
             return init();
