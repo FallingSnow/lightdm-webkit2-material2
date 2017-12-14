@@ -279,6 +279,16 @@ class GreeterUtil {
     }
 
     /**
+     * Returns list of images inside directory at `path`.
+     *
+     * @param path
+     * @returns {String[]} List of abs paths for the images found in `path`.
+     */
+    dirimages(path) {
+        return this._mock_data.dirimages;
+    }
+
+    /**
      * Escape HTML entities in a string.
      *
      * @param {String} text

@@ -80,7 +80,7 @@ const colorSchemes = [< MenuItem value = "random" key = "random" primaryText = {
                     }
                     imageReadyHandler(event) {}
                     updateImages() {
-                        const imagePaths = greeterutil.dirlist(this.props.directory);
+                        const imagePaths = greeterutil.dirimages(this.props.directory);
 
                         // THESE LINKS ARE NSFW -- DO NOT UNCOMMENT
                         // const imagePaths = [

@@ -41,6 +41,9 @@ if (!lightdm && process.env.NODE_ENV === 'development') {
         window.greeterutil = {
             dirlist: function(dir) {
                 return undefined;
+            },
+            dirimages: function(dir) {
+                return undefined;
             }
         }
     }
