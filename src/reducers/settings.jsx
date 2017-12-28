@@ -1,6 +1,24 @@
 const moment = require('moment');
 require('moment-timezone');
 
+function dirimages(dir)
+{
+    let imagesExtensions = ["jpg", "jpeg", "png"];
+    function isImage(path) {
+        let filename = path.substring(path.lastIndexOf("/") + 1);
+        let dotPosition = filename.lastIndexOf(".");
+        if (dotPosition > -1) {
+            let extension = filename.substring(dotPosition + 1);
+            if (imagesExtensions.indexOf(extension) > -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+    return greeterutil.dirlist(dir).filter(isImage);
+}
+greeterutil.dirimages = dirimages;
+
 let initialState = {
     'language': lightdm.languages[0].name,
     'backgroundEngine': 'trianglify',
@@ -16,7 +34,7 @@ let initialState = {
     'scaling': 1,
     'alignment': 1 // 0: left, 1: center, 2: right
 };
-let firstImage = greeterutil.dirlist(initialState['backgroundImagesDirectory']) ? greeterutil.dirlist(initialState['backgroundImagesDirectory'])[0] : false;
+let firstImage = greeterutil.dirimages(initialState['backgroundImagesDirectory']) ? greeterutil.dirimages(initialState['backgroundImagesDirectory'])[0] : false;
 initialState['backgroundImageLocation'] = firstImage || '';
 
 // If hide users is set with lightdm, then clear the default users

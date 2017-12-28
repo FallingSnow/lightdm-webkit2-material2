@@ -8,7 +8,7 @@ class RandomImage extends React.Component {
         if (!this.props.directory)
             return console.error('Images directory prop not given.');
 
-        this.imagePaths = greeterutil.dirlist(this.props.directory);
+        this.imagePaths = greeterutil.dirimages(this.props.directory);
         if (typeof this.imagePaths === 'undefined')
             this.imagePaths = [''];
         }
