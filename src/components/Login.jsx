@@ -150,7 +150,14 @@ class Login extends React.Component {
         </SelectField>;
         // Require users to input their username
         if (lightdm.hide_users) {
-            userSelect = <TextField className="input" fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName} autoFocus={lightdm.hide_users}/>
+            userSelect = <TextField className="input" fullWidth={true} floatingLabelText={< FormattedMessage id = "user" defaultMessage = "User" />} value={this.props.settings.userName} onChange={this.changeUserName} autoFocus={lightdm.hide_users}
+                onKeyPress={(ev) => {
+                    if (ev.key === 'Enter') {
+                        document.getElementById('password-input').focus();
+                    }
+                }
+            }
+            />
         }
         return (
             <Card className="card animated">
@@ -161,7 +168,12 @@ class Login extends React.Component {
                     </div>
                     <div className="form-container scrollbox">
                         {userSelect}
-                        <TextField id="password-input" className="input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}/>
+                        <TextField id="password-input" className="input" floatingLabelStyle={this.state.passwordStyle} errorStyle={this.state.passwordStyle} underlineStyle={this.state.passwordStyle} fullWidth={true} floatingLabelText={< FormattedMessage id = "password" defaultMessage = "Password" />} type="password" value={this.state.password || ''} onChange={this.updatePassword} autoFocus={!lightdm.hide_users} errorText={this.state.passwordError} hintText={this.state.passwordHint}
+                            onKeyPress={(ev) => {
+                                if (ev.key === 'Enter') {
+                                    this.login(ev);
+                                }
+                        }}/>
                         <SelectField fullWidth={true} className="input" floatingLabelText={< FormattedMessage id = "session" defaultMessage = "Session" />} value={this.props.settings.sessionKey} onChange={this.changesessionKey}>
                             {sessions}
                         </SelectField>
